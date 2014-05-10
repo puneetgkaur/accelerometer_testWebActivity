@@ -9,8 +9,11 @@ define(function (require) {
         // Initialize the activity.
         activity.setup();
 	activity_cordova = activity.cordova;
-
+	
+	//call to cordova to tell native interface ready
 
     });
 
 });
+
+

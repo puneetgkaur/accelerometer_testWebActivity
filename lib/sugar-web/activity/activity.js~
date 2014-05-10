@@ -130,12 +130,14 @@ define(["webL10n",
     };
 
 
-    activity.cordova = function(successhandler,errorhandler,className,functionName,parameters){
+    activity.cordova = function(successhandler,errorhandler,className,functionName,parameters,callbackId){
         function onResponseReceived(error, result) {
-            if (error === null) {
-                successhandler(result);
+            if (error == null) {
+                //successhandler(result);
+		
+		cordova.callbackSuccess(callbackId,result);
             } else {
-                errorhandler(error);
+                cordova.callbackError(callbackId,error);
             }
         }
 

@@ -14,7 +14,8 @@
 <script src="js/cordova.js"></script>
 
 
-	<script type="text/javascript" charset="utf-8">
+  <script type="text/javascript" charset="utf-8">
+
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -22,13 +23,18 @@
     // device APIs are available
     //
     function onDeviceReady() {
+        console.log("index.html : onDeviceReady1");
         navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+	console.log("index.html : onDeviceReady2");
     }
 
     // onSuccess: Get a snapshot of the current acceleration
     //
     function onSuccess(acceleration) {
-        alert("return value"+acceleration);
+        alert('Acceleration X: ' + acceleration.x + '\n' +
+              'Acceleration Y: ' + acceleration.y + '\n' +
+              'Acceleration Z: ' + acceleration.z + '\n' +
+              'Timestamp: '      + acceleration.timestamp + '\n');
     }
 
     // onError: Failed to get the acceleration
@@ -37,7 +43,7 @@
         alert('onError!');
     }
 
-	</script>
+    </script>
 </head>
 
 <body>
@@ -58,9 +64,8 @@
     	<div id="accelerometer">Waiting for accelerometer...</div>
         <button onclick="stopWatch();">Stop Watching</button>
 -->
-    <h1>Example</h1>
-    <button onclick="navigator.accelerometer.getCurrentAcceleration(onSuccess, onError)">getCurrentAcceleration</button>
-
+       <h1>Example</h1>
+    <p>getCurrentAcceleration</p>
 </div>
 </body>
 
