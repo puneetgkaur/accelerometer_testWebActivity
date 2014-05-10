@@ -996,6 +996,8 @@ channel.onDeviceReady = cordova.addStickyDocumentEventHandler('deviceready');
 // Listen for DOMContentLoaded and notify our channel subscribers.
 if (document.readyState == 'complete' || document.readyState == 'interactive') {
     channel.onDOMContentLoaded.fire();
+console.log("document.readyState");
+console.log(document.readyState);
 } else {
     document.addEventListener('DOMContentLoaded', function() {
         channel.onDOMContentLoaded.fire();
@@ -1154,12 +1156,11 @@ module.exports = {
             channel = require("cordova/channel"),
 	    modulemapper = require('cordova/modulemapper');
 
-
 	require('cordova/channel').onNativeReady.fire();
-        
-require('cordova/channel').onDeviceReady.fire();
+	require('cordova/channel').onDeviceReady.fire();
+	require('cordova/channel').onCordovaReady.fire();
 
-require('cordova/channel').onCordovaReady.fire();
+
 
     }
 };

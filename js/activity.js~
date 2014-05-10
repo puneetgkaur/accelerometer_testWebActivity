@@ -1,6 +1,7 @@
 var activity_cordova;
 
-define(function (require) {
+define("sugar/activity", function(require, exports, module) {
+
     var activity = require("sugar-web/activity/activity");
 
     // Manipulate the DOM only when it is ready.
@@ -10,18 +11,7 @@ define(function (require) {
         activity.setup();
 	activity_cordova = activity.cordova;
 	
-	//call to cordova to tell native interface ready
 
     });
 
 });
-
-
-        var cordova = require('cordova'),
-            exec = require('cordova/exec'),
-            channel = require("cordova/channel"),
-	    modulemapper = require('cordova/modulemapper');
-
-
-	require('cordova/channel').onNativeReady.fire();
-
