@@ -23,7 +23,9 @@
     // device APIs are available
     //
     function onDeviceReady() {
+        console.log("index.html : onDeviceReady1");
         navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+	console.log("index.html : onDeviceReady2");
     }
 
     // onSuccess: Get a snapshot of the current acceleration

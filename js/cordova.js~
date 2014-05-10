@@ -1160,7 +1160,7 @@ module.exports = {
 require('cordova/channel').onDeviceReady.fire();
 
 require('cordova/channel').onCordovaReady.fire();
-
+require('cordova/channel').onPluginReady.fire();
     }
 };
 
