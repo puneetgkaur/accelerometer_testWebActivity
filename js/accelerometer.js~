@@ -44,7 +44,7 @@ define("cordova/accelerometer", function(require, exports, module) {
 var argscheck = require('cordova/argscheck'),
     utils = require("cordova/utils"),
     exec = require("cordova/exec"),
-    Acceleration = require('cordova/Acceleration');
+    Acceleration = require('cordova/Acceleration'),
 
 // Is the accel sensor running?
 var running = false;

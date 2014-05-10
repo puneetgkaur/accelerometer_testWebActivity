@@ -11,7 +11,6 @@ define("sugar/activity", function(require, exports, module) {
         // Initialize the activity.
         activity.setup();
 	activity_cordova = activity.cordova;
-	
 
     });
 
