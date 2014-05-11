@@ -14,12 +14,13 @@
 <!--need to include activity.js before cordova.js as activity.js loads the DOM and sets up the activity without which we recieve DOM error-->
 <script src="js/activity.js"></script>
 <script src="js/cordova.js"></script>
-<script src="js/accelerometer.js"></script>
-
+<script src="js/cordova_plugins.js"></script>
 
   <script type="text/javascript" charset="utf-8">
     // Wait for device API libraries to load
     //
+
+/*
 require(['cordova/accelerometer'],
     function (data) {
         //The data object will be the API response for the
@@ -27,6 +28,7 @@ require(['cordova/accelerometer'],
         console.log(data);
     }
 );
+*/
 
     document.addEventListener("deviceready", onDeviceReady, false);
 

@@ -19,8 +19,6 @@
  *
 */
 
-define("cordova/Acceleration", function(require, exports, module) {
-
 var Acceleration = function(x, y, z, timestamp) {
     this.x = x;
     this.y = y;
@@ -29,5 +27,3 @@ var Acceleration = function(x, y, z, timestamp) {
 };
 
 module.exports = Acceleration;
-
-});

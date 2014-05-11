@@ -15,18 +15,21 @@
 <script src="js/activity.js"></script>
 <script src="js/cordova.js"></script>
 <script src="js/accelerometer.js"></script>
-
+<script src="js/cordova_plugins.js"></script>
 
   <script type="text/javascript" charset="utf-8">
     // Wait for device API libraries to load
     //
+
+/*
 require(['cordova/accelerometer'],
     function (data) {
         //The data object will be the API response for the
         //JSONP data call.
-         navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+        console.log(data);
     }
 );
+*/
 
     document.addEventListener("deviceready", onDeviceReady, false);
 

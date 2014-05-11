@@ -23,28 +23,10 @@
  * This class provides access to device accelerometer data.
  * @constructor
  */
-
-
-define("cordova/Acceleration", function(require, exports, module) {
-
-var Acceleration = function(x, y, z, timestamp) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.timestamp = timestamp || (new Date()).getTime();
-};
-
-module.exports = Acceleration;
-
-});
-
-
-define("cordova/accelerometer", function(require, exports, module) {
-
 var argscheck = require('cordova/argscheck'),
     utils = require("cordova/utils"),
     exec = require("cordova/exec"),
-    Acceleration = require('cordova/Acceleration');
+    Acceleration = require('./Acceleration');
 
 // Is the accel sensor running?
 var running = false;
@@ -59,12 +41,6 @@ var listeners = [];
 var accel = null;
 
 // Tells native to start.
-//---------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------------------------
-//----------------------------make a native class named accelerometer which can ---------------------------------------
-// ----------------------------------incoorperate start and stop actions-----------------------------------------------
-//---------------------------------------------------------------------------------------------------------------------
-
 function start() {
     exec(function(a) {
         var tempListeners = listeners.slice(0);
@@ -113,7 +89,7 @@ var accelerometer = {
      */
     getCurrentAcceleration: function(successCallback, errorCallback, options) {
         argscheck.checkArgs('fFO', 'accelerometer.getCurrentAcceleration', arguments);
-	console.log("accelerometer.js : getCurrentAcceleration1");
+
         var p;
         var win = function(a) {
             removeListeners(p);
@@ -191,5 +167,3 @@ var accelerometer = {
     }
 };
 module.exports = accelerometer;
-
-});
