@@ -1157,12 +1157,11 @@ module.exports = {
 	    modulemapper = require('cordova/modulemapper');
 
 	require('cordova/channel').onNativeReady.fire();
-	require('cordova/channel').onDeviceReady.fire();
-	require('cordova/channel').onCordovaReady.fire();
-	require(['domReady!'], function (doc) { 
-		require('cordova/channel').onDOMContentLoaded.fire();
-	});
 
+
+        //need to place these both functions at the right place
+	//require('cordova/channel').onDeviceReady.fire();
+	//require('cordova/channel').onCordovaReady.fire();
 
 
 
