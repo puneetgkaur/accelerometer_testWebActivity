@@ -1,0 +1,16 @@
+
+r] module cordova/plugin_list already defined
+	define (cordova.js, line 79)
+[Error] ReferenceError: Can't find variable: module
+	global code (Acceleration.js, line 29)
+[Error] Error: Module name "cordova/argscheck" has not been loaded yet for context: _. Use require([])
+http://requirejs.org/docs/errors.html#notloaded
+	onError (require.js, line 1765)
+	onError (require.js, line 521)
+	localRequire (require.js, line 1356)
+	requirejs (require.js, line 1691)
+[Log] index.html : onDeviceReady1 (index.html, line 40)
+[Error] TypeError: undefined is not an object (evaluating 'navigator.accelerometer.getCurrentAcceleration')
+	onDeviceReady (index.html, line 41)
+	fire (cordova.js, line 811)
+	(anonymous function) (cordova.js, line 223)

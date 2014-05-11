@@ -1159,10 +1159,6 @@ module.exports = {
 	require('cordova/channel').onNativeReady.fire();
 
 
-        //need to place these both functions at the right place
-	//require('cordova/channel').onDeviceReady.fire();
-	//require('cordova/channel').onCordovaReady.fire();
-
 
 
     }

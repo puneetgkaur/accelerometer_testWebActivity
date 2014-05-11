@@ -23,10 +23,10 @@ cordova.define("org.apache.cordova.device-motion.accelerometer", function(requir
  * This class provides access to device accelerometer data.
  * @constructor
  */
-var argscheck = require('cordova/argscheck'),
+var argscheck = require("cordova/argscheck"),
     utils = require("cordova/utils"),
     exec = require("cordova/exec"),
-    Acceleration = require('./Acceleration');
+    Acceleration = require("./Acceleration");
 
 // Is the accel sensor running?
 var running = false;

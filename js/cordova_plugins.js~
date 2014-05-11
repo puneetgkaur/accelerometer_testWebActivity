@@ -1,14 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "Acceleration.js",
+        "file": "../plugins/org.apache.cordova.device-motion/www/Acceleration.js",
         "id": "org.apache.cordova.device-motion.Acceleration",
         "clobbers": [
             "Acceleration"
         ]
     },
     {
-        "file": "accelerometer.js",
+        "file": "../plugins/org.apache.cordova.device-motion/www/accelerometer.js",
         "id": "org.apache.cordova.device-motion.accelerometer",
         "clobbers": [
             "navigator.accelerometer"

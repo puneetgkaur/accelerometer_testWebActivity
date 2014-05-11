@@ -1277,6 +1277,8 @@ exports.load = function(callback) {
         console.log('Could not find cordova.js script tag. Plugin loading may fail.');
         pathPrefix = '';
     }
+console.log("pathPrefix");
+console.log(pathPrefix);
     injectPluginScript(pathPrefix, callback);
 };
 
