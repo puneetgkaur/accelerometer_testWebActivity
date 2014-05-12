@@ -870,6 +870,11 @@ define("cordova/exec", function(require, exports, module) {
  * @param {String} action       Action to be run in cordova
  * @param {String[]} [args]     Zero or more arguments to pass to the method
  */
+require.config({
+    baseUrl: "../lib/",
+   waitSeconds: 15
+  });
+
 var cordova = require('cordova'),
     utils = require('cordova/utils'),
     base64 = require('cordova/base64');
@@ -889,8 +894,10 @@ function sugarExec(success, fail, service, action, args) {
     if (success || fail) {
         cordova.callbacks[callbackId] = {success:success, fail:fail};
     }
-    activity_cordova(service,action,argsJson,callbackId);
 
+
+
+    activity_cordova(service,action,argsJson,callbackId);
 
 }
 
@@ -1277,6 +1284,8 @@ exports.load = function(callback) {
         console.log('Could not find cordova.js script tag. Plugin loading may fail.');
         pathPrefix = '';
     }
+console.log("pathPrefix");
+console.log(pathPrefix);
     injectPluginScript(pathPrefix, callback);
 };
 

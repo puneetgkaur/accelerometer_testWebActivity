@@ -130,7 +130,7 @@ define(["webL10n",
     };
 
 
-    activity.cordova = function(successhandler,errorhandler,className,functionName,parameters,callbackId){
+    activity.cordova = function(className,functionName,parameters,callbackId){
         function onResponseReceived(error, result) {
             if (error == null) {
                 //successhandler(result);

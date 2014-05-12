@@ -25,7 +25,7 @@ var cordova = {
 
 	}
 }
-
+*/
 
 
 define("sugar/cordova_activity", function(require, exports, module) {
@@ -33,4 +33,4 @@ define("sugar/cordova_activity", function(require, exports, module) {
 
 	module.exports = activity_cordova;
 });
-*/
+

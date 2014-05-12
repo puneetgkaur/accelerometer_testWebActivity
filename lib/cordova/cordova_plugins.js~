@@ -15,9 +15,10 @@ module.exports = [
         ]
     },
     {
-        "file": "../lib/sugar-web/activity/activity.js",
+        "file": "../sugar-web/activity/activity.js",
+        "id": "sugar.accelerometer",
         "clobbers": [
-            "sugar.activity"
+            "navigator.accelerometer"
         ]
     }
 ];

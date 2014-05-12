@@ -13,5 +13,4 @@ define("sugar/activity", function(require, exports, module) {
 	activity_cordova = activity.cordova;
 
     });
-
 });
