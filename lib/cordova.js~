@@ -892,7 +892,7 @@ function sugarExec(success, fail, service, action, args) {
         cordova.callbacks[callbackId] = {success:success, fail:fail};
     }
 
-    require(['activity'], function (activity) {
+    require(['sugar-web/activity/activity'], function (activity) {
  
 	activity.cordova(service,action,argsJson,callbackId);
 
