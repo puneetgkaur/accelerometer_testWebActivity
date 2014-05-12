@@ -1,6 +1,6 @@
 {
   "volo": {
-    "baseUrl": "lib",
+    "baseUrl": "../",
     "dependencies": {
       "sugar-web": "github:sugarlabs/sugar-web/master",
       "webL10n": "github:sugarlabs/webL10n",
