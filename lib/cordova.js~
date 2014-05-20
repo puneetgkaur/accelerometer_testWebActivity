@@ -1175,7 +1175,7 @@ function getCordovaPath() {
     }
     return path;
 }
-
+/*
 //add to the cordova.js path the path to sugar-web activity 
 var path_to_sugar_web=getCordovaPath()+'sugar-web-lib/sugar-web/activity/activity.js';
 console.log("path to sugar web"+path_to_sugar_web);
@@ -1185,7 +1185,7 @@ var script = document.createElement("script");
 script.src = path_to_sugar_web;
 document.head.appendChild(script);
 
-
+*/
 
 
 function sugarExec(success, fail, service, action, args) {
@@ -1207,7 +1207,7 @@ function sugarExec(success, fail, service, action, args) {
  //   require(['activity'], function (activity) {
  
 //	activity.cordova(service,action,argsJson,callbackId);
-console.log(activity);
+//console.log(activity);
   // });
 
 
