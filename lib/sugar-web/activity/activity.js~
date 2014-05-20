@@ -1,11 +1,11 @@
-define("sugar-web/activity/activity",["webL10n",
-        "sugar-web/activity/shortcut",
-        "sugar-web/bus",
-        "sugar-web/env",
-        "sugar-web/datastore",
-        "sugar-web/graphics/icon",
-        "sugar-web/graphics/activitypalette"], function (
-    l10n, shortcut, bus, env, datastore, icon, activitypalette) {
+//define(["webL10n",
+//        "sugar-web/activity/shortcut",
+//        "sugar-web/bus",
+//        "sugar-web/env",
+//        "sugar-web/datastore",
+//        "sugar-web/graphics/icon",
+//        "sugar-web/graphics/activitypalette"], function (
+//    l10n, shortcut, bus, env, datastore, icon, activitypalette) {
 
     'use strict';
 
@@ -145,6 +145,6 @@ define("sugar-web/activity/activity",["webL10n",
  	bus.sendMessage("activity.cordova",[className,functionName,parameters],onResponseReceived);
 
     }
-
+console.log(activity);
     return activity;
 });
