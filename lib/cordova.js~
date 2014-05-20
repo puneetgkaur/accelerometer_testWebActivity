@@ -1,4 +1,4 @@
-// Platform: android
+// Platform: sugar
 // 3.4.0
 /*
  Licensed to the Apache Software Foundation (ASF) under one
@@ -334,50 +334,6 @@ module.exports = cordova;
 
 });
 
-// file: src/android/android/nativeapiprovider.js
-define("cordova/android/nativeapiprovider", function(require, exports, module) {
-
-/**
- * Exports the ExposedJsApi.java object if available, otherwise exports the PromptBasedNativeApi.
- */
-
-var nativeApi = this._cordovaNative || require('cordova/android/promptbasednativeapi');
-var currentApi = nativeApi;
-
-module.exports = {
-    get: function() { return currentApi; },
-    setPreferPrompt: function(value) {
-        currentApi = value ? require('cordova/android/promptbasednativeapi') : nativeApi;
-    },
-    // Used only by tests.
-    set: function(value) {
-        currentApi = value;
-    }
-};
-
-});
-
-// file: src/android/android/promptbasednativeapi.js
-define("cordova/android/promptbasednativeapi", function(require, exports, module) {
-
-/**
- * Implements the API of ExposedJsApi.java, but uses prompt() to communicate.
- * This is used only on the 2.3 simulator, where addJavascriptInterface() is broken.
- */
-
-module.exports = {
-    exec: function(service, action, callbackId, argsJson) {
-        return prompt(argsJson, 'gap:'+JSON.stringify([service, action, callbackId]));
-    },
-    setNativeToJsBridgeMode: function(value) {
-        prompt(value, 'gap_bridge_mode:');
-    },
-    retrieveJsMessages: function(fromOnlineEvent) {
-        return prompt(+fromOnlineEvent, 'gap_poll:');
-    }
-};
-
-});
 
 // file: src/common/argscheck.js
 define("cordova/argscheck", function(require, exports, module) {
@@ -1162,6 +1118,7 @@ var cordova = require('cordova'),
 // SEE CORDOVA/PLUGINLOADER FOR FURTHER CODE
 
 //get the path where the cordova.js currently is
+
 function getCordovaPath() {
     var path = null;
     var scripts = document.getElementsByTagName('script');
@@ -1186,7 +1143,7 @@ script.src = path_to_sugar_web;
 document.head.appendChild(script);
 
 */
-
+bus.listen();
 
 function sugarExec(success, fail, service, action, args) {
 
@@ -1400,7 +1357,6 @@ function addEntry(strategy, moduleName, symbolPath, opt_deprecationMessage) {
     }
 }
 
-// Note: Android 2.3 does have Function.bind().
 exports.clobbers = function(moduleName, symbolPath, opt_deprecationMessage) {
     addEntry('c', moduleName, symbolPath, opt_deprecationMessage);
 };
