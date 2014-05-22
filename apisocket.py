@@ -119,18 +119,18 @@ class ActivityAPI(API):
 	cordova_method=getattr(cordova,"execute")
 	result=None
 	result=cordova_method(function_name,parameters)
-	self._client.send_result(request,result)
+	#self._client.send_result(request,result)
 	
 	#dependiing on whether twe got the result or got some error
 	#we check the value returned by the function invoked
-	"""
-	if result.status == 1 or result.status == 0:
+	
+	if result[0] == 1 or result[0] == 0:
 	    #call the send_result function for the client object
 	    self._client.send_result(request,result)
 	else:
 	    #call the send_error function for the client object
 	    self._client.send_error(request,result)
-	"""
+	
 	"""
 	logging.error("Reached in apisocket.py: cordova function of activity class ")
 	logging.error("Reached in apisocket.py: cordova function of activity class :object of class accelerometer created")
@@ -178,20 +178,17 @@ class Accelerometer:
 	    #    JSON_EXCEPTION: 8,
 	    #    ERROR: 9
     	    #}
-	    result.status = 1
-	    result.message = json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
-	    result.keepCallback=True
-	    return
+	    result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
+	    result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
+	    return result
         elif action == "stop":
-	    result.status = 1
-	    result.message = json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
-	    result.keepCallback=True
-	    return
+	    result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
+	    result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
+	    return result
 	else:
-	    result.status = 9
-	    result.message = json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
-	    result.keepCallback=True
-	    return
+	    result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
+	    result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
+	    return result
         
 
 
