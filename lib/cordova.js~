@@ -1162,13 +1162,16 @@ function sugarExec(success, fail, service, action, args) {
     if (success || fail) {
         cordova.callbacks[callbackId] = {success:success, fail:fail};
     }
+
+
 /*
      require(['activity'], function (activity) {
 	activity.cordova(service,action,argsJson,callbackId);
 	console.log(activity);
      });
-
 */
+
+
 	function onResponseReceived(error, result) {
 	    if (error == null) {
 		//successhandler(result);
