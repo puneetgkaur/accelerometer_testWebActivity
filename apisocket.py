@@ -115,20 +115,26 @@ class ActivityAPI(API):
 	logging.error(parameters)
 	logging.error("not parameter:")
 	logging.error(not parameters)
-	cordova=eval(class_name)()
+	#cordova=eval(class_name)()
+	cordova=getattr(cordova_classes,class_name)
 	cordova_method=getattr(cordova,"execute")
+	instance_cordova=cordova()
 	result=None
-	result=cordova_method(function_name,parameters)
+	result=json.loads(cordova_method(instance_cordova,function_name,parameters))
+	#result=json.loads(cordova_method(function_name,parameters))
+	logging.error(result)
 	#self._client.send_result(request,result)
 	
 	#dependiing on whether twe got the result or got some error
 	#we check the value returned by the function invoked
 	
-	if result[0] == 1 or result[0] == 0:
+	if result['status'] == 1 or result['status'] == 0:
 	    #call the send_result function for the client object
+	    logging.error("result.status == 0 or 1")
 	    self._client.send_result(request,result)
 	else:
 	    #call the send_error function for the client object
+	    logging.error("result not equal 0 or 1")
 	    self._client.send_error(request,result)
 	
 	"""
@@ -136,79 +142,77 @@ class ActivityAPI(API):
 	logging.error("Reached in apisocket.py: cordova function of activity class :object of class accelerometer created")
 	"""
 	
+class cordova_classes:
+    class Accelerometer:
+        def __init__(self):
+	    logging.error("accelerometer object initiated");
 
 
 
-class Accelerometer:
-    def __init__(self):
-	logging.error("accelerometer object initiated");
-
-
-
-    def execute(self,action,args):
-        #result={"x":0,"y":0,"z":0,"timestamp":0400}
-	#return result
+        def execute(self,action,args):
+            #result={"x":0,"y":0,"z":0,"timestamp":0400}
+	    #return result
 	
-	if action == "start":
-	    """
-            ACCELEROMETER_DEVICE = '/sys/devices/platform/lis3lv02d/position'
-	    fh = open(ACCELEROMETER_DEVICE)
-	    string = fh.read()
-	    xyz = string[1:-2].split(',')
-	    try:
-		acc_x = float(xyz[0]) / (64 * 18)
-		acc_y = float(xyz[1]) / (64 * 18)
-		fh.close()
-	    except:
-		pass
-	    """	
-	    #should be equal to cordova.callbackStatus.OK for successhandler to execute
+       	    if action == "start":
+	        """
+                ACCELEROMETER_DEVICE = '/sys/devices/platform/lis3lv02d/position'
+	        fh = open(ACCELEROMETER_DEVICE)
+	        string = fh.read()
+	        xyz = string[1:-2].split(',')
+	        try:
+	 	    acc_x = float(xyz[0]) / (64 * 18)
+		    acc_y = float(xyz[1]) / (64 * 18)
+		    fh.close()
+	        except:
+		    pass
+	        """	
+	        #should be equal to cordova.callbackStatus.OK for successhandler to execute
 	    
-	    #Note the values cordova.callbackStatus can have :
-	    #callbackStatus: 
-	    #{
-	    #    NO_RESULT: 0,
-	    #    OK: 1,
-	    #    CLASS_NOT_FOUND_EXCEPTION: 2,
-	    #    ILLEGAL_ACCESS_EXCEPTION: 3,
-	    #    INSTANTIATION_EXCEPTION: 4,
-	    #    MALFORMED_URL_EXCEPTION: 5,
-	    #    IO_EXCEPTION: 6,
-	    #    INVALID_ACTION: 7,
-	    #    JSON_EXCEPTION: 8,
-	    #    ERROR: 9
-    	    #}
-	    result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
-	    result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
-	    return result
-        elif action == "stop":
-	    result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
-	    result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
-	    return result
-	else:
-	    result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
-	    result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
-	    return result
+	        #Note the values cordova.callbackStatus can have :
+	        #callbackStatus: 
+	        #{
+	        #    NO_RESULT: 0,
+	        #    OK: 1,
+	        #    CLASS_NOT_FOUND_EXCEPTION: 2,
+	        #    ILLEGAL_ACCESS_EXCEPTION: 3,
+	        #    INSTANTIATION_EXCEPTION: 4,
+	        #    MALFORMED_URL_EXCEPTION: 5,
+	        #    IO_EXCEPTION: 6,
+	        #    INVALID_ACTION: 7,
+	        #    JSON_EXCEPTION: 8,
+	        #    ERROR: 9
+    	        #}
+	        result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
+	        result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
+	        return result
+            elif action == "stop":
+	        result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
+	        result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
+	        return result
+	    else:
+	        result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
+	        result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
+	        return result
         
 
 
-    def getCurrentAcceleration(self,result,error,parameters=None):
-	coordinates={5,6}
-	result=coordinates
+        def getCurrentAcceleration(self,result,error,parameters=None):
+	    coordinates={5,6}
+	    result=coordinates
 	
-	#return if the function ran successfully
-	#can return different values of the error and success as we 
-	#proceed as per the logic of this python function as per
-	#the function needs
-	#currently keep it simple and return 1 to show success
-	#if encounter error, assign the value of error and return 0 to denote failure
-	#
-	#result and error are initially before the call set to None
-	#Now if there is any kiind of error assign the type of error to the variable error and return 0
-	#Else assign the result and return 1
+       	    #return if the function ran successfully
+	    #can return different values of the error and success as we 
+	    #proceed as per the logic of this python function as per
+	    #the function needs
+	    #currently keep it simple and return 1 to show success
+	    #if encounter error, assign the value of error and return 0 to denote failure
+	    #
+	    #result and error are initially before the call set to None
+	    #Now if there is any kiind of error assign the type of error to the variable error and return 0
+	    #Else assign the result and return 1
 
-	#iin case of success we have result key iin the json with the result value else iinicase of failure we have the error key in the json dump, the fist key isi always success to symbolize whether we have the error key or the result key, thats is whether iti was a success or a failure
-        return 1
+	    #iin case of success we have result key iin the json with the result value else iinicase of failure we have the error key in the json dump, the fist key isi always success to symbolize whether we have the error key or the result key, thats is whether iti was a success or a failure
+            return 1
     
 
 class DatastoreAPI(API):
