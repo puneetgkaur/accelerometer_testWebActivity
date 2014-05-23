@@ -43,13 +43,15 @@ require(['cordova/accelerometer'],
     // onSuccess: Get a snapshot of the current acceleration
     //
     function onSuccess(acceleration) {
+	console.log("reached on success");
         console.log("onSuccess acceleration "+acceleration);
-	/*
-        alert('Acceleration X: ' + acceleration.x + '\n' +
+	
+        alert('Acceleration X: ' + acceleration['x'] + '\n' +
               'Acceleration Y: ' + acceleration.y + '\n' +
               'Acceleration Z: ' + acceleration.z + '\n' +
               'Timestamp: '      + acceleration.timestamp + '\n');
-	*/
+	
+
     }
 
     // onError: Failed to get the acceleration

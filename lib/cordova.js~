@@ -272,6 +272,11 @@ var cordova = {
 //-------------------------------------------------------------------------------------------------------------
 		
     callbackSuccess: function(callbackId, args) {
+	console.log("Reached callbackSuccess");
+	console.log("callbackId : "+callbackId);
+	console.log("args.status : "+args.status);
+	console.log("[args.message] : "+[args.message]);
+	console.log("args.keepCallback : "+args.keepCallback);
         try {
             cordova.callbackFromNative(callbackId, true, args.status, [args.message], args.keepCallback);
         } catch (e) {
@@ -304,7 +309,13 @@ var cordova = {
      * Called by native code when returning the result from an action.
      */
     callbackFromNative: function(callbackId, success, status, args, keepCallback) {
+	console.log("Reached callbackFromNative");
+	console.log("success : "+success);
+	console.log("status : "+status);
+	console.log("args : " + args);
+	console.log("keepCallback : "+keepCallback);
         var callback = cordova.callbacks[callbackId];
+	console.log(callback);
         if (callback) {
             if (success && status == cordova.callbackStatus.OK) {
                 callback.success && callback.success.apply(null, args);
@@ -318,6 +329,7 @@ var cordova = {
             }
         }
     },
+
     addConstructor: function(func) {
         channel.onCordovaReady.subscribe(function() {
             try {
@@ -1160,9 +1172,12 @@ function sugarExec(success, fail, service, action, args) {
         argsJson = JSON.stringify(args);
 
     if (success || fail) {
+console.log("either success or failure");
         cordova.callbacks[callbackId] = {success:success, fail:fail};
     }
 
+    console.log("callbackId"+callbackId);
+    console.log("cordova.callbacks[callbackId]"+cordova.callbacks[callbackId]);
 
 /*
      require(['activity'], function (activity) {
@@ -1173,12 +1188,20 @@ function sugarExec(success, fail, service, action, args) {
 
 
 	function onResponseReceived(error, result) {
-	    if (error == null) {
+	    console.log("error");
+	    console.log(error);
+	    console.log("not error");
+    	    console.log(!error);
+	    console.log("result");
+	    console.log(result);
+	    if (!error ) {
 		//successhandler(result);
+		console.log("Its success");
 		cordova.callbackSuccess(callbackId,result);
 		//success.apply(result);
 
 	    } else {
+	        console.log("Its error");
 		cordova.callbackError(callbackId,error);
 		//fail.apply(error);
 	    }
