@@ -1,6 +1,4 @@
-define("cordova/bus",function(require, exports, module) {
-
-    var env = require('cordova/env'),
+define(["sugar-web/env"], function (env) {
 
     'use strict';
 
@@ -221,5 +219,5 @@ define("cordova/bus",function(require, exports, module) {
         client = null;
     };
 
-    module.exports = bus;
+    return bus;
 });
