@@ -315,7 +315,7 @@ var cordova = {
 	console.log("args : " + args);
 	console.log("keepCallback : "+keepCallback);
         var callback = cordova.callbacks[callbackId];
-	console.log(callback);
+	//console.log(callback);
         if (callback) {
             if (success && status == cordova.callbackStatus.OK) {
                 callback.success && callback.success.apply(null, args);

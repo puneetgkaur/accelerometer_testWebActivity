@@ -1,0 +1,42 @@
+/*
+//TO READ A FILE 
+var fs = require('fs');
+var path = require('path');
+
+var filePath = path.join(__dirname + '/sugar-web/env.js');
+
+fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
+    if (!err){
+    console.log('received data: ' + data);
+    //response.writeHead(200, {'Content-Type': 'text'});
+    response.write(data);
+    response.end();
+    }else{
+        console.log(err);
+    }
+
+});
+*/
+
+var fs = require('fs'),
+    readline = require('readline'),
+    stream = require('stream');
+var path = require('path');
+var filePath = path.join(__dirname + '/sugar-web/env.js');
+var instream = fs.createReadStream(filePath);
+var outstream = new stream;
+outstream.readable = true;
+outstream.writable = true;
+
+var rl = readline.createInterface({
+    input: instream,
+    output: outstream,
+    terminal: false
+});
+
+rl.on('line', function(line) {
+    console.log(line);
+    //Do your stuff ...
+    //Then write to outstream
+    rl.write(line);
+});
