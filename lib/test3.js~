@@ -2,7 +2,7 @@ var fs=require('fs');
 
 var path = require('path');
 var filePath1 = path.join(__dirname + '/sugar-web/activity/activity.js');
-
+var filePath2 = path.join(__dirname + '/new_file.js');
 
 // between square brakets \[(.*?)\]
 
@@ -23,7 +23,7 @@ console.log(end_define_index);
 // now copy from data from extract1.index till end_define_index from data to a new string variable using the javascript slice string function
 
 var module_dependencies1 = data.slice(extract1.index+2,end_define_index);
-//console.log(module_dependencies1);
+console.log("module-dependencies : \n"+module_dependencies1);
 
 str2=module_dependencies1.split("\"");
 console.log("string="+str2);
@@ -42,13 +42,37 @@ while(i<str2.length)
 	 console.log(str3.length);
 	 console.log(str3[str3.length-1]);
 	 cordova_sugardependencies=cordova_sugardependencies.concat(str3[str3.length-1]+"=");
-	 console.log(str2[i].replace("(sugar-web)(.*),(cordova)(.*)"));
-	 cordova_sugardependencies=cordova_sugardependencies.concat(str2[i].replace("sugar-web,cordova")+"\n");
+	 cordova_sugardependencies=cordova_sugardependencies.concat(str2[i]+"\n");
 	 console.log(cordova_sugardependencies);
 	}
 	i++;
 }
 
+
+str4=data.split("'use strict'");
+console.log(str4[1]);
+file_name=path.basename(filePath1);
+console.log(file_name);
+
+file_name_part1=file_name.split(".");
+console.log(file_name_part1[0]);
+
+cut_the_tail_part=str4[1].split("return "+file_name_part1[0]);
+console.log(cut_the_tail_part[0]);
+
+new_file_data="define("+module_dependencies1+",function(require, exports, module){\n\n"+cordova_sugardependencies+"\n'use strict';"+cut_the_tail_part[0]+"\n"+"module.exports="+file_name_part1[0]+";\n})";
+
+console.log(new_file_data);
+
+fs.writeFile(filePath2, new_file_data, function(err) {
+    if(err) {
+        console.log(err);
+    } else {
+        console.log("wrote data to " +filePath2);
+    }
+}); 
+
+// CAN MATCH return name_of_file TO KNOW THE END
 
 
 /*
