@@ -1,7 +1,7 @@
 var fs=require('fs');
 
 var path = require('path');
-var filePath1 = path.join(__dirname + '/sugar-web/env.js');
+var filePath1 = path.join(__dirname + '/sugar-web/activity/activity.js');
 var filePath2 = path.join(__dirname + '/new_file.js');
 
 // between square brakets \[(.*?)\]
@@ -63,9 +63,14 @@ console.log(file_name_part1[0]);
 
 cut_the_tail_part=str4[1].split("return "+file_name_part1[0]);
 console.log(cut_the_tail_part[0]);
-
-new_file_data="define("+module_dependencies1+",function(require, exports, module){\n\n"+cordova_sugardependencies+"\n'use strict';"+cut_the_tail_part[0]+"\n"+"module.exports="+file_name_part1[0]+";\n})";
-
+if(extract1!=null)
+{
+	new_file_data="define("+module_dependencies1+",function(require, exports, module){\n\n"+cordova_sugardependencies+"\n'use strict';"+cut_the_tail_part[0]+"\n"+"module.exports="+file_name_part1[0]+";\n})";
+}
+else
+{
+	new_file_data="define(function(require, exports, module){\n'use strict';"+cut_the_tail_part[0]+"\n"+"module.exports="+file_name_part1[0]+";\n})";
+}
 console.log(new_file_data);
 
 fs.writeFile(filePath2, new_file_data, function(err) {
