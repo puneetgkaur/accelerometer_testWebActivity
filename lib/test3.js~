@@ -1,7 +1,7 @@
 var fs=require('fs');
 
 var path = require('path');
-var filePath1 = path.join(__dirname + '/sugar-web/activity/activity.js');
+var filePath1 = path.join(__dirname + '/sugar-web/env.js');
 var filePath2 = path.join(__dirname + '/new_file.js');
 
 // between square brakets \[(.*?)\]
@@ -12,14 +12,23 @@ fs.readFile(filePath1, 'utf8', function (err,data) {
   }
   console.log(data);
 
- var extract1 = data.match("/\[(.*?)\]/");
+ var extract1 = data.match("\[(.*?)\]");
 console.log(extract1);
+i=0;
+while(data[i]!=']'&&data.length!=i)i++;
+
+if(i==data.length)
+{
+  extract1=null;
+}
+
 if(extract1!=null)
 {
 	console.log("extract1.index="+extract1.index);
 
 	i=extract1.index;
-	while(data[i]!=']')i++;
+	while(data[i]!=']'&&data.length!=i)i++;
+        
 	end_define_index=i;
 	console.log(end_define_index);
 
