@@ -30,7 +30,7 @@ function read_directory(dir){
 			    else
 			    {
 			    	console.log("no");
-				
+
 			    }
 		    }
 
