@@ -1,7 +1,7 @@
 var fs=require('fs');
 
 var path = require('path');
-var filePath1 = path.join(__dirname + '/sugar-web/env.js');
+var filePath1 = path.join(__dirname + '/sugar-web/activity/activity.js');
 var filePath2 = path.join(__dirname + '/new_file.js');
 
 // between square brakets \[(.*?)\]
@@ -54,8 +54,8 @@ if(extract1!=null)
 		 console.log(str3);
 		 console.log(str3.length);
 		 console.log(str3[str3.length-1]);
-		 cordova_sugardependencies=cordova_sugardependencies.concat(str3[str3.length-1]+"=");
-		 cordova_sugardependencies=cordova_sugardependencies.concat(str2[i]+";\n");
+		 cordova_sugardependencies=cordova_sugardependencies.concat("var "+str3[str3.length-1]+"=");
+		 cordova_sugardependencies=cordova_sugardependencies.concat("require('"+str2[i]+"');\n");
 		 console.log(cordova_sugardependencies);
 		}
 		i++;
