@@ -45,7 +45,7 @@ require(['cordova/accelerometer'],
     //
     function onSuccess(acceleration) {
 	console.log("reached on success");
-        console.log("onSuccess acceleration "+JSON.stringify(acceleration));
+        console.log("onSuccess acceleration "+acceleration);
 	
         alert('Acceleration X: ' + acceleration.x + '\n' +
               'Acceleration Y: ' + acceleration.y + '\n' +

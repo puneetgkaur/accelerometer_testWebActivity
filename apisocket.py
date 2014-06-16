@@ -143,50 +143,38 @@ class ActivityAPI(API):
 	"""
 	
 class cordova_classes:
+
     class Accelerometer:
         def __init__(self):
 	    logging.error("accelerometer object initiated");
-
-
+	    ACCELEROMETER_DEVICE = 'a.txt'
+	    fh = open(ACCELEROMETER_DEVICE,'w')
+	    str_Acc="(13.972857,23.57437123,12.6813634)"
+	    fh.write(str_Acc)
+	    fh.close()
+	    fh1 = open(ACCELEROMETER_DEVICE,'r')
+	    string = fh1.read()
+	    xyz = string[1:-2].split(',')
+	    self.x=0
+	    self.y=0
+	    self.z=0
+	    try:
+		self.x = float(xyz[0]) / (64 * 18)
+		self.y = float(xyz[1]) / (64 * 18)
+		self.z = float(xyz[2]) / (64 * 18)
+		fh1.close()
+	    except:
+		pass
+	    self.timestamp = time.time()
 
         def execute(self,action,args):
-            #result={"x":0,"y":0,"z":0,"timestamp":0400}
-	    #return result
 	
        	    if action == "start":
-	        """
-                ACCELEROMETER_DEVICE = '/sys/devices/platform/lis3lv02d/position'
-	        fh = open(ACCELEROMETER_DEVICE)
-	        string = fh.read()
-	        xyz = string[1:-2].split(',')
-	        try:
-	 	    acc_x = float(xyz[0]) / (64 * 18)
-		    acc_y = float(xyz[1]) / (64 * 18)
-		    fh.close()
-	        except:
-		    pass
-	        """	
-	        #should be equal to cordova.callbackStatus.OK for successhandler to execute
-	    
-	        #Note the values cordova.callbackStatus can have :
-	        #callbackStatus: 
-	        #{
-	        #    NO_RESULT: 0,
-	        #    OK: 1,
-	        #    CLASS_NOT_FOUND_EXCEPTION: 2,
-	        #    ILLEGAL_ACCESS_EXCEPTION: 3,
-	        #    INSTANTIATION_EXCEPTION: 4,
-	        #    MALFORMED_URL_EXCEPTION: 5,
-	        #    IO_EXCEPTION: 6,
-	        #    INVALID_ACTION: 7,
-	        #    JSON_EXCEPTION: 8,
-	        #    ERROR: 9
-    	        #}
-	        result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
+	        result_message= json.dumps({"x":self.x,"y":self.y,"z":self.z,"timestamp":self.timestamp})
 	        result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
 	        return result
             elif action == "stop":
-	        result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0400})
+	        result_message= json.dumps({"x":0,"y":0,"z":0,"timestamp":0000})
 	        result = json.dumps({"status":1,"message":result_message,"keepCallback":True})
 	        return result
 	    else:
